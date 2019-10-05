@@ -1,0 +1,2 @@
+class TabelogRestaurant < ApplicationRecord
+end
