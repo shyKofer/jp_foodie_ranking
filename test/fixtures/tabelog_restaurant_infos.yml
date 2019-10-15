@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prefecture: MyString
+  district: MyString
+  restaurant_id: MyString
+  rating: MyString
+  reviews: 1
+
+two:
+  prefecture: MyString
+  district: MyString
+  restaurant_id: MyString
+  rating: MyString
+  reviews: 1

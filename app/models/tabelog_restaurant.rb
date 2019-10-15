@@ -1,2 +1,0 @@
-class TabelogRestaurant < ApplicationRecord
-end

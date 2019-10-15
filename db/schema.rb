@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_162246) do
+ActiveRecord::Schema.define(version: 2019_10_15_153319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
   enable_extension "plpgsql"
+
+  create_table "tabelog_restaurant_infos", force: :cascade do |t|
+    t.string "prefecture"
+    t.string "district"
+    t.string "restaurant_id"
+    t.string "rating"
+    t.integer "reviews"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "tabelog_restaurants", force: :cascade do |t|
     t.string "city"
