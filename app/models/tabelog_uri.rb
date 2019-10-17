@@ -1,0 +1,2 @@
+class TabelogUri < ApplicationRecord
+end

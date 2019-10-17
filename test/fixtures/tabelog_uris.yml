@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prefecture: MyString
+  area_group_uri: MyString
+  area_group_name: MyString
+  area_uri: MyString
+  area_name: MyString
+
+two:
+  prefecture: MyString
+  area_group_uri: MyString
+  area_group_name: MyString
+  area_uri: MyString
+  area_name: MyString
