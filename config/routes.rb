@@ -23,5 +23,3 @@ Rails.application.routes.draw do
   end
 
 end
-#  get "api/collectors/v1/batch", to: "tabelog#index"
-#  get "api/restaurans/v1/references", to: "tabelog#index"

@@ -4,11 +4,7 @@ require 'open-uri'
 class Api::Collectors::V1::Batch::TabelogController < ApplicationController
     # GET /tabelog
     def index()
-        puts 'xxxxxx'
         collectTabelogURI()
-        # Model
-        # @restaurants =  TabelogRestaurant.all
-        # render json: @restaurants
     end
 
     def crawlTabelogRestaurants()
@@ -26,6 +22,7 @@ class Api::Collectors::V1::Batch::TabelogController < ApplicationController
     end
 
     def collectTabelogURI()
+        ## A1301~31
         for i in 1..31 do
             uri_postfix_no = (1300 + i).to_s
             uri_area = 'A' + uri_postfix_no
@@ -39,17 +36,14 @@ class Api::Collectors::V1::Batch::TabelogController < ApplicationController
     def getAreaUriInfo(area_group_uri)
         tabelog_url = 'https://tabelog.com/tokyo/' + area_group_uri
         puts "URL : #{tabelog_url}"
-
         doc = Nokogiri::HTML(open(tabelog_url))
         area_count = doc.css('.list-balloon__list-item a').count
         puts "area_count : #{area_count}"
-
         for i in 0..area_count-1 do
             puts "Loop Count i : #{i}"
             @tabelogUri = TabelogUri.new
             @tabelogUri.prefecture = 'tokyo'
             @tabelogUri.area_group_uri = area_group_uri
-            #@tabelogUri.area_group_name = doc.css('.c-link-arrow span')[i+1].text
             @tabelogUri.area_uri = doc.css('.list-balloon__list-item a')[i]['href'].strip
             @tabelogUri.area_name = doc.css('.c-link-arrow span')[i+1].text
             sleep 1
