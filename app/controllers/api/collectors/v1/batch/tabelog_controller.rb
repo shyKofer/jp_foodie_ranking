@@ -2,8 +2,8 @@ require 'nokogiri'
 require 'open-uri'
 
 class Api::Collectors::V1::Batch::TabelogController < ApplicationController
-    # GET /tabelog
-    def index()
+    # GET api/collectors/v1/batch/tabelog
+    def create()
         collectTabelogURI()
     end
 
@@ -23,14 +23,12 @@ class Api::Collectors::V1::Batch::TabelogController < ApplicationController
 
     def collectTabelogURI()
         ## A1301~31
+        # tokyo uri : tokyo/A1301 ~ tokyo/A1331
         for i in 1..31 do
             uri_postfix_no = (1300 + i).to_s
             uri_area = 'A' + uri_postfix_no
             getAreaUriInfo(uri_area);
         end
-        # tokyo uri : tokyo/A1301 ~ tokyo/A1331
-        # 丸の内・大手町
-        # https://tabelog.com/tokyo/A1302/A130201/
     end
 
     def getAreaUriInfo(area_group_uri)

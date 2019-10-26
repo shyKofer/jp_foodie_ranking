@@ -22,4 +22,15 @@ Rails.application.routes.draw do
     end
   end
 
+  # /api/collectors/v1/batch/tabelog
+  namespace :api do
+    namespace :collectors do
+      namespace :v1 do
+        namespace :batch do
+          resources :tabelog_restaurant
+        end
+      end
+    end
+  end
+
 end

@@ -1,15 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  prefecture: MyString
-  district: MyString
-  restaurant_id: MyString
+  uri_id: 1
+  name: MyString
+  genre: MyString
+  nearby_station: MyString
+  distance_from_station: MyString
   rating: MyString
-  reviews: 1
+  review_cnt: 1
+  lunch_budget: MyString
+  dinner_budget: MyString
 
 two:
-  prefecture: MyString
-  district: MyString
-  restaurant_id: MyString
+  uri_id: 1
+  name: MyString
+  genre: MyString
+  nearby_station: MyString
+  distance_from_station: MyString
   rating: MyString
-  reviews: 1
+  review_cnt: 1
+  lunch_budget: MyString
+  dinner_budget: MyString
