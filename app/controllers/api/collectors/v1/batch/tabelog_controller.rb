@@ -2,43 +2,29 @@ require 'nokogiri'
 require 'open-uri'
 
 class Api::Collectors::V1::Batch::TabelogController < ApplicationController
-    # GET api/collectors/v1/batch/tabelog
+    # POST api/collectors/v1/batch/tabelog
     def create()
-        collectTabelogURI()
+        collect_tabelog_uris()
     end
 
-    def crawlTabelogRestaurants()
-        # TabelogRestaurantInfo
-        @restaurants_info = TabelogRestaurantInfo.new
-        # prefecture
-        # restaurants_name
-        # district
-        # rating
-        # reviews
-        #TabelogRestaurantInfo
-        doc = Nokogiri::HTML(open('https://tabelog.com/tokyo/A1301/A130103/13220829/'))
-        restaurant_name = doc.css('.display-name').text.strip
-        restaurant_rating_score = doc.css('.rdheader-rating__score-val-dtl').text
-    end
-
-    def collectTabelogURI()
-        ## A1301~31
-        # tokyo uri : tokyo/A1301 ~ tokyo/A1331
+    # 食べログの東京のアリアのURIを保存
+    def collect_tabelog_uris()
+        # Tokyo Area URIs : tokyo/A1301 ~ tokyo/A1331 (A1301~31)
         for i in 1..31 do
             uri_postfix_no = (1300 + i).to_s
             uri_area = 'A' + uri_postfix_no
-            getAreaUriInfo(uri_area);
+            getAreaUriInfo(uri_area)
         end
     end
 
     def getAreaUriInfo(area_group_uri)
-        tabelog_url = 'https://tabelog.com/tokyo/' + area_group_uri
-        puts "URL : #{tabelog_url}"
-        doc = Nokogiri::HTML(open(tabelog_url))
+        group_area_uri = 'https://tabelog.com/tokyo/' + area_group_uri
+        logger.debug("group_area_uri:#{group_area_uri}")
+        doc = Nokogiri::HTML(open(group_area_uri))
         area_count = doc.css('.list-balloon__list-item a').count
-        puts "area_count : #{area_count}"
+        logger.debug("area_count:#{area_count}")
         for i in 0..area_count-1 do
-            puts "Loop Count i : #{i}"
+            logger.debug("Loop Count:#{i}")
             @tabelogUri = TabelogUri.new
             @tabelogUri.prefecture = 'tokyo'
             @tabelogUri.area_group_uri = area_group_uri

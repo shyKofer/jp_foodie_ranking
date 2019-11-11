@@ -4,11 +4,17 @@ class Api::Collectors::V1::Batch::TabelogRestaurantController < ApplicationContr
     # Method : POST
     def create()
         logger.debug("Start")
-        crawl_tabelog_restaurants()
+        save_tabelog_restaurants()
         logger.debug("End")
     end
 
-    def crawl_tabelog_restaurants()
+    #get
+    def index()
+        return 'xxxxx'
+    end
+
+    # 食べログのレストラン情報をクローリングしてDBに保存する
+    def save_tabelog_restaurants()
         @tabelog_uris = TabelogUri.all
         for tabelog_uri in @tabelog_uris
             crawling_uri = tabelog_uri.area_uri
@@ -53,7 +59,6 @@ class Api::Collectors::V1::Batch::TabelogRestaurantController < ApplicationContr
             restaurants_html = Nokogiri::HTML(open(crawling_page_url))
             posting_cnt = get_posting_cnt_per_page(restaurants_html.css('.c-page-count__num strong'))
             logger.debug("posting_cnt:#{posting_cnt}")
-
             for posting_index in (0..posting_cnt-1) do
                 begin
                     logger.debug("crawling_page_url:#{crawling_page_url}")
